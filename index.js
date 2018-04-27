@@ -21,3 +21,39 @@ const zebraStripes = [
   { width: 0.59, color: null },
   { width: 7.31, color: null }
 ];
+
+function allegiance (x) {
+  if (knownDecepticons.includes(x.name)) {
+    let a = {};
+    for (const key in x) {
+      a[key] = x[key];
+    }
+    a["alliance"] = "decepticon";
+    return a;
+  } else {
+    let a = {};
+    for (const key in x) {
+      a[key] = x[key];
+    }
+    a["alliance"] = "autobot";
+    return a;
+  };
+}
+
+const sortedRobots = robots.map(allegiance);
+
+function zebraColor (x, i) {
+  // A stripe is black when the stripe's index is even, and it's white if a stripe's index is odd
+  let a = {};
+  for (const key in x) {
+    a[key] = x[key];
+  }
+  if (i % 2 === 0) {
+    a.color = "black";
+  } else {
+    a.color = "white";
+  }
+  return a;
+}
+
+const coloredZebraStripes = zebraStripes.map(zebraColor);
